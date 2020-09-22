@@ -1,15 +1,20 @@
 from dataclasses import asdict
 
-from package.someclass import SomeClass
+import pytest
 
 
-def test_method_a_one():
+@pytest.fixture
+def document():
+    from package.someclass import SomeClass
     class_instance = SomeClass()
-    result = asdict(class_instance.method_a("a")[0])
+    return class_instance
+
+
+def test_method_a_one(document):
+    result = asdict(document.method_a("a")[0])
     assert result["string"] == "a"
 
 
-def test_method_a_two():
-    class_instance = SomeClass()
-    result = asdict(class_instance.method_a("b")[0])
+def test_method_a_two(document):
+    result = asdict(document.method_a("b")[0])
     assert result["string"] == "b"
