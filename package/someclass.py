@@ -4,7 +4,7 @@ from package.resultcontainer import ResultContainer
 
 class SomeClass:
     def __init__(self):
-        self.result = ResultContainer()
+        self.result = ResultContainer([])
 
     def method_a(self, string):
         self.result.result_list.append(Result(string))
